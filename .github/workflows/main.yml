@@ -9,11 +9,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
-      - name: packer validate packer.json
+      - name: packer validate winsrv_2016.json
         uses: docker://hashicorp/packer:1.4.3
         with:
           args: validate packer.json
       - name: packer build packer.json
         uses: docker://hashicorp/packer:1.4.3
         with:
-          args: build packer.json
+          args: build winsrv_2016.json
