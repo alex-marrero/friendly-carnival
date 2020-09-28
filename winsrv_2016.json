@@ -7,7 +7,7 @@
       "tenant_id": "{{user `AZURE_TENANT_ID`}}",
       "subscription_id": "{{user `AZURE_SUBSCRIPTION_ID`}}",
   
-      "managed_image_resource_group_name": "{{user `AZURE_RESOURCE_GROUP`}}",
+      "managed_image_resource_group_name": "az_custom-images",
       "managed_image_name": "winsrv2016",
   
       "os_type": "Windows",
@@ -26,7 +26,7 @@
           "task": "Image deployment"
       },
   
-      "build_resource_group_name": "{{user `AZURE_RESOURCE_GROUP`}}",
+      "build_resource_group_name": "az_custom-images",
       "vm_size": "Standard_D2_v2"
     }],
     "provisioners": [{
