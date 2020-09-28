@@ -1,2 +1,2 @@
 # friendly-carnival
-VM Image Automation using Packer
+Azure VM Image Automation using Packer
