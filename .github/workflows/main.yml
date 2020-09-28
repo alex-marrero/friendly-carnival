@@ -8,7 +8,11 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v1+
+              # Runs a single command using the runners shell
+      - name: Run a one-line script
+        run: echo ${{ secrets.AZURE_RESOURCE_GROUP }}
+        
       - name: packer validate winsrv_2016.json
         uses: docker://hashicorp/packer:1.4.3
         with:
@@ -22,3 +26,4 @@ jobs:
           AZURE_SECRET: ${{ secrets.AZURE_SECRET }}
           AZURE_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
           AZURE_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+          AZURE_RESOURCE_GROUP: ${{ secrets.AZURE_RESOURCE_GROUP }}
