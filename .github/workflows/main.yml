@@ -8,15 +8,16 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1+
-              # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo ${{ secrets.AZURE_RESOURCE_GROUP }}
-        
+      - uses: actions/checkout@v1+        
+     
       - name: packer validate winsrv_2016.json
         uses: docker://hashicorp/packer:1.4.3
         with:
           args: validate winsrv_2016.json
+# Runs a single command using the runners shell
+      - name: Run a one-line script
+        run: echo ${{ secrets.AZURE_RESOURCE_GROUP }}
+
       - name: packer build winsrv_2016.json
         uses: docker://hashicorp/packer:1.4.3
         with:
