@@ -13,7 +13,7 @@ jobs:
         uses: docker://hashicorp/packer:1.4.3
         with:
           args: validate packer.json
-      - name: packer build packer.json
+      - name: packer build winsrv_2016.json
         uses: docker://hashicorp/packer:1.4.3
         with:
           args: build winsrv_2016.json
