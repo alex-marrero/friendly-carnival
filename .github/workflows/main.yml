@@ -1,8 +1,9 @@
 name: Packer
 on:
   push:
-      paths:
-        - '*.json'
+    branches: 
+      - master
+
 jobs:
   build:
     runs-on: ubuntu-latest
