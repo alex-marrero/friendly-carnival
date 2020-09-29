@@ -11,12 +11,12 @@ jobs:
       - uses: actions/checkout@v1    
      
       - name: packer validate winsrv_2016.json
-        uses: docker://hashicorp/packer:1.6.3
+        uses: docker://hashicorp/packer:1.4.3
         with:
           args: validate winsrv_2016.json
 
       - name: packer build winsrv_2016.json
-        uses: docker://hashicorp/packer:1.6.3
+        uses: docker://hashicorp/packer:1.4.3
         with:
           args: build winsrv_2016.json
         env: 
