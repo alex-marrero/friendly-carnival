@@ -1,5 +1,12 @@
 {
-    "builders": [{
+ "variables": {
+     "AZURE_CLIENT_ID": "${{ AZURE_CLIENT_ID }}",
+     "AZURE_SECRET": "${{ AZURE_SECRET }}",
+     "AZURE_TENANT_ID": "${{ AZURE_TENANT_ID }}",
+     "AZURE_SUBSCRIPTION_ID": "${{ AZURE_SUBSCRIPTION_ID }}",
+     },
+    "builders": [
+        {
       "type": "azure-arm",
   
       "client_id": "{{user `AZURE_CLIENT_ID`}}",
