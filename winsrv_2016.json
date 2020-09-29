@@ -1,51 +1,48 @@
 {
- "variables": {
-     "AZURE_CLIENT_ID": "{{env `AZURE_CLIENT_ID`}}",
-     "AZURE_SECRET": "{{env `AZURE_SECRET`}}",
-     "AZURE_TENANT_ID": "{{env `AZURE_TENANT_ID`}}",
-     "AZURE_SUBSCRIPTION_ID": "{{env `AZURE_SUBSCRIPTION_ID`}}"
-     },
+    "variables": {
+        "AZURE_CLIENT_ID": "{{env `AZURE_CLIENT_ID`}}",
+        "AZURE_SECRET": "{{env `AZURE_SECRET`}}",
+        "AZURE_TENANT_ID": "{{env `AZURE_TENANT_ID`}}",
+        "AZURE_SUBSCRIPTION_ID": "{{env `AZURE_SUBSCRIPTION_ID`}}"
+    },
     "builders": [
         {
-      "type": "azure-arm",
-  
-      "client_id": "{{user `AZURE_CLIENT_ID`}}",
-      "client_secret": "{{user `AZURE_SECRET`}}",
-      "tenant_id": "{{user `AZURE_TENANT_ID`}}",
-      "subscription_id": "{{user `AZURE_SUBSCRIPTION_ID`}}",
-  
-      "managed_image_resource_group_name": "az_custom_img",
-      "managed_image_name": "winsrv2016",
-  
-      "os_type": "Windows",
-      "image_publisher": "MicrosoftWindowsServer",
-      "image_offer": "WindowsServer",
-      "image_sku": "2016-Datacenter",
-  
-      "communicator": "winrm",
-      "winrm_use_ssl": true,
-      "winrm_insecure": true,
-      "winrm_timeout": "5m",
-      "winrm_username": "packer",
-  
-      "azure_tags": {
-          "dept": "Engineering",
-          "task": "Image deployment"
-      },
-  
-      "build_resource_group_name": "az_custom_img",
-      "vm_size": "Standard_D2_v2"
-    }],
-    "provisioners": [{
-      "type": "powershell",
-      "inline": [
-        "Add-WindowsFeature Web-Server",
-        "while ((Get-Service RdAgent).Status -ne 'Running') { Start-Sleep -s 5 }",
-        "while ((Get-Service WindowsAzureGuestAgent).Status -ne 'Running') { Start-Sleep -s 5 }",
-        "& $env:SystemRoot\\System32\\Sysprep\\Sysprep.exe /oobe /generalize /quiet /quit",
-        "while($true) { $imageState = Get-ItemProperty HKLM:\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Setup\\State | Select ImageState; if($imageState.ImageState -ne 'IMAGE_STATE_GENERALIZE_RESEAL_TO_OOBE') { Write-Output $imageState.ImageState; Start-Sleep -s 10  } else { break } }",
-        "Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))",
-        "./software_installs.ps1"
-      ]
-    }]
-  }
+            "type": "azure-arm",
+            "client_id": "{{user `AZURE_CLIENT_ID`}}",
+            "client_secret": "{{user `AZURE_SECRET`}}",
+            "tenant_id": "{{user `AZURE_TENANT_ID`}}",
+            "subscription_id": "{{user `AZURE_SUBSCRIPTION_ID`}}",
+            "managed_image_resource_group_name": "az_custom_img",
+            "managed_image_name": "winsrv2016",
+            "os_type": "Windows",
+            "image_publisher": "MicrosoftWindowsServer",
+            "image_offer": "WindowsServer",
+            "image_sku": "2016-Datacenter",
+            "communicator": "winrm",
+            "winrm_use_ssl": true,
+            "winrm_insecure": true,
+            "winrm_timeout": "5m",
+            "winrm_username": "packer",
+            "azure_tags": {
+                "dept": "Engineering",
+                "task": "Image deployment"
+            },
+            "build_resource_group_name": "az_custom_img",
+            "vm_size": "Standard_D2_v2"
+        }
+    ],
+    "provisioners": [
+        {
+            "type": "powershell",
+            "inline": [
+                "Add-WindowsFeature Web-Server",
+                "while ((Get-Service RdAgent).Status -ne 'Running') { Start-Sleep -s 5 }",
+                "while ((Get-Service WindowsAzureGuestAgent).Status -ne 'Running') { Start-Sleep -s 5 }",
+                "& $env:SystemRoot\\System32\\Sysprep\\Sysprep.exe /oobe /generalize /quiet /quit",
+                "while($true) { $imageState = Get-ItemProperty HKLM:\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Setup\\State | Select ImageState; if($imageState.ImageState -ne 'IMAGE_STATE_GENERALIZE_RESEAL_TO_OOBE') { Write-Output $imageState.ImageState; Start-Sleep -s 10  } else { break } }",
+                "Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))",
+                "./software_installs.ps1"
+            ]
+        }
+    ]
+}
