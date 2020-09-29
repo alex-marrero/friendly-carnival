@@ -13,7 +13,7 @@
             "tenant_id": "{{user `tenant_id`}}",
             "subscription_id": "{{user `subscription_id`}}",
             "managed_image_resource_group_name": "az_custom_img",
-            "managed_image_name": "winsrv2016",``
+            "managed_image_name": "winsrv2016",
             "os_type": "Windows",
             "image_publisher": "MicrosoftWindowsServer",
             "image_offer": "WindowsServer",
