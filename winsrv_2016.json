@@ -1,19 +1,19 @@
 {
     "variables": {
-        "AZURE_CLIENT_ID": "{{env `AZURE_CLIENT_ID`}}",
-        "AZURE_SECRET": "{{env `AZURE_SECRET`}}",
-        "AZURE_TENANT_ID": "{{env `AZURE_TENANT_ID`}}",
-        "AZURE_SUBSCRIPTION_ID": "{{env `AZURE_SUBSCRIPTION_ID`}}"
+        "client_id": "{{env `AZURE_CLIENT_ID`}}",
+        "client_secret": "{{env `AZURE_SECRET`}}",
+        "tenant_id": "{{env `AZURE_TENANT_ID`}}",
+        "subscription_id": "{{env `AZURE_SUBSCRIPTION_ID`}}"
     },
     "builders": [
         {
             "type": "azure-arm",
-            "client_id": "{{user `AZURE_CLIENT_ID`}}",
-            "client_secret": "{{user `AZURE_SECRET`}}",
-            "tenant_id": "{{user `AZURE_TENANT_ID`}}",
-            "subscription_id": "{{user `AZURE_SUBSCRIPTION_ID`}}",
+            "client_id": "{{user `client_id`}}",
+            "client_secret": "{{user `client_secret`}}",
+            "tenant_id": "{{user `tenant_id`}}",
+            "subscription_id": "{{user `subscription_id`}}",
             "managed_image_resource_group_name": "az_custom_img",
-            "managed_image_name": "winsrv2016",
+            "managed_image_name": "winsrv2016",``
             "os_type": "Windows",
             "image_publisher": "MicrosoftWindowsServer",
             "image_offer": "WindowsServer",
