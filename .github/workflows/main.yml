@@ -18,7 +18,7 @@ jobs:
       - name: packer build winsrv_2016.json
         uses: docker://hashicorp/packer:1.4.3
         with:
-          args: build winsrv_2016.json
+          args: build -force winsrv_2016.json
         env: 
           AZURE_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
           AZURE_SECRET: ${{ secrets.AZURE_SECRET }}
