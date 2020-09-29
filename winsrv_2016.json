@@ -27,7 +27,8 @@
             "winrm_timeout": "3m",
             "winrm_username": "packer",
             "location": "East US 2",
-            "vm_size": "Standard_DS2_v2"
+            "vm_size": "Standard_DS2_v2",
+            "managed_image_zone_resilient": "false"
         }
     ],
     "provisioners": [
