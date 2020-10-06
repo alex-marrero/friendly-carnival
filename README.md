@@ -6,10 +6,10 @@ Azure VM Image Automation using Packer
 
 Will need to add the following Secrets if Repo is Forked
 
-AZURE_CLIENT_ID - App Registration/ Service Principal with Contributor Access on Subscription
-AZURE_SECRET - Secret for App Registration / Service Principal
-AZURE_RESOURCE_GROUP - Name of RG
-AZURE_SUBSCRIPTION_ID
-AZURE_TENANT_ID
+- AZURE_CLIENT_ID - App Registration/ Service Principal with Contributor Access on Subscription
+- AZURE_SECRET - Secret for App Registration / Service Principal
+- AZURE_RESOURCE_GROUP - Name of RG
+- AZURE_SUBSCRIPTION_ID
+- AZURE_TENANT_ID
 
 
